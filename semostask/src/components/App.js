@@ -40,8 +40,8 @@ export default class App extends React.Component{
 
   render(){
     return(
-      <div>
-        <table className="table" style={{border: "1px solid black"}}>
+      <div id="main">
+        <table id="table" style={{border: "1px solid black"}}>
           <thead>
             <tr>
               <th>Date</th>
@@ -55,35 +55,35 @@ export default class App extends React.Component{
 
           </tbody>
         </table>
-
-        <button onClick={this.Visible}>New</button>
+        <div id="newtasks">
+        <button id="btnNew" onClick={this.Visible}>Add New</button>
         {this.state.visible ? null :
 
         <form onSubmit={this.AddTask}>
-        <Input
+        <Input 
         handleChange={this.TaskChangeHandler}
         name="date"
         type="date"
         />
-        <Input
+        <Input 
         handleChange={this.TaskChangeHandler}
         name="task"
         type="text"
         placeholder="Task"
         />
-        <Input
+        <Input 
         handleChange={this.TaskChangeHandler}
         name="bTime"
         type="text"
         placeholder="Begin time"
         />
-        <Input
+        <Input 
         handleChange={this.TaskChangeHandler}
         name="eTime"
         type="text"
         placeholder="End time"
         />
-        <Input
+        <Input 
         handleChange={this.TaskChangeHandler}
         name="priority"
         type="number"
@@ -91,7 +91,7 @@ export default class App extends React.Component{
         />
         <button>Add</button>
         </form>
-        }
+        }</div>
       </div>
     )
   }

@@ -1,3 +1,37 @@
-table{
-    border:1px solid black;
+body {
+    position: fixed;
+    width:100vw;
+    height: 100vh;
+    margin:0;
+    background-color: rgb(238, 232, 232);
+}
+
+#table{
+   top: 20px;
+   left: 20px;
+   position: relative;
+   border: solid black 1px;
+   border-radius: 5px;
+   width: 60%;
+   height: 500px;
+   background-color: rgb(199, 199, 206);
+   box-shadow: 0 0 16px rgba(0,0,0, .17);
+}
+
+#newtasks{
+    background-color: rgb(199, 199, 206);
+    position: relative;
+    left: 70%;
+    width: 20%;
+    border-radius: 5px; 
+    box-shadow: 0 0 16px rgba(0,0,0, .17);
+}
+
+form input{
+    margin: 10px 10px;
+}
+
+#btnNew {
+    position: relative;
+    width: 100%;
 }
