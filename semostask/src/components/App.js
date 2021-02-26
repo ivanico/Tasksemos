@@ -12,7 +12,8 @@ export default class App extends React.Component{
       bTime: "",
       eTime: "",
       priority: "",
-      addTask: []
+      addTask: [],
+      visible: true
     }
   }
 
@@ -25,10 +26,17 @@ export default class App extends React.Component{
     });
   }
 
-  AddTask = (event) => {
-    event.preventDefault();
+  AddTask = (e) => {
+    e.preventDefault();
     console.log(this.state)
   }
+
+  Visible = () => {
+    this.setState({
+      visible: !this.state.visible
+    });
+    console.log(this.state.visible)
+  } 
 
   render(){
     return(
@@ -48,12 +56,14 @@ export default class App extends React.Component{
           </tbody>
         </table>
 
+        <button onClick={this.Visible}>New</button>
+        {this.state.visible ? null :
+
         <form onSubmit={this.AddTask}>
         <Input
         handleChange={this.TaskChangeHandler}
         name="date"
         type="date"
-        placeholder="date"
         />
         <Input
         handleChange={this.TaskChangeHandler}
@@ -81,6 +91,7 @@ export default class App extends React.Component{
         />
         <button>Add</button>
         </form>
+        }
       </div>
     )
   }
