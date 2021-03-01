@@ -1,44 +1,33 @@
-import React from 'react';
-import { Input } from './Input';
+import React,{useState} from 'react';
+import InputField from './InputField';
+const App = () => {
+  const [visible,setVisible] = useState(!1);
+  const [date,setDate] = useState('');
+  const [task,setTask] = useState('');
+  const [beginTime,setBeginTime] = useState('');
+  const [endTime,setEndTime] = useState('');
+  const [priority,setPriority] = useState('');
 
-export default class App extends React.Component{
+  const [taskArray,setTaskArray] = useState([]);
 
-  constructor(props) {
-    super(props);
-    
-    this.state = {
-      date: "",
-      task: "",
-      bTime: "",
-      eTime: "",
-      priority: "",
-      addTask: [],
-      visible: true
-    }
+  const createNewTaskArray = () => {
+    const newTaskArray = taskArray.slice();
+    const newObj = {
+      date,
+      task,
+      beginTime,
+      endTime,
+      priority
+    };
+    newTaskArray.push(newObj);
+    return newTaskArray;
   }
-
-
-
-
-  TaskChangeHandler = (e) => {
-    this.setState({
-      [e.target.name]: e.target.vlaue
-    });
+  
+  const addNewTask = () => {
+    const newTaskArray = createNewTaskArray();
+    setTaskArray(newTaskArray);
+    setVisible(false);
   }
-
-  AddTask = (e) => {
-    e.preventDefault();
-    console.log(this.state)
-  }
-
-  Visible = () => {
-    this.setState({
-      visible: !this.state.visible
-    });
-    console.log(this.state.visible)
-  } 
-
-  render(){
     return(
       <div id="main">
         <table id="table" style={{border: "1px solid black"}}>
@@ -52,47 +41,54 @@ export default class App extends React.Component{
             </tr>
           </thead>
           <tbody>
-
+          {taskArray.map((a,ind)=> (<tr key={ind}>
+            <td>{a.date}</td>
+            <td>{a.task}</td>
+            <td>{a.beginTime}</td>
+            <td>{a.endTime}</td>
+            <td>{a.priority}</td>
+          </tr>))}
           </tbody>
         </table>
         <div id="newtasks">
-        <button id="btnNew" onClick={this.Visible}>Add New</button>
-        {this.state.visible ? null :
-
-        <form onSubmit={this.AddTask}>
-        <Input 
-        handleChange={this.TaskChangeHandler}
-        name="date"
-        type="date"
-        />
-        <Input 
-        handleChange={this.TaskChangeHandler}
-        name="task"
-        type="text"
-        placeholder="Task"
-        />
-        <Input 
-        handleChange={this.TaskChangeHandler}
-        name="bTime"
-        type="text"
-        placeholder="Begin time"
-        />
-        <Input 
-        handleChange={this.TaskChangeHandler}
-        name="eTime"
-        type="text"
-        placeholder="End time"
-        />
-        <Input 
-        handleChange={this.TaskChangeHandler}
-        name="priority"
-        type="number"
-        placeholder="Priority"
-        />
-        <button>Add</button>
-        </form>
+        {!visible && <button id="btnNew" onClick={()=> setVisible(true)}>Add New</button>}
+        {visible &&
+        <React.Fragment>
+          <InputField 
+          handleChange={setDate}
+          value={date}
+          type="date"
+          />
+          <InputField 
+          handleChange={setTask}
+          value={task}
+          type="text"
+          placeholder="Task"
+          />
+          <InputField 
+          handleChange={setBeginTime}
+          value={beginTime}
+          type="text"
+          placeholder="Begin time"
+          />
+          <InputField 
+          handleChange={setEndTime}
+          value={endTime}
+          type="text"
+          placeholder="End time"
+          />
+          <InputField 
+          handleChange={setPriority}
+          value={priority}
+          type="number"
+          placeholder="Priority"
+          />
+          <button onClick={()=> addNewTask()}>Add</button>
+          <button onClick={()=> setVisible(false)}>Cancel</button>
+        </React.Fragment>
         }</div>
       </div>
     )
-  }
 }
+
+export default App;
