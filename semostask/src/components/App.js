@@ -40,20 +40,38 @@ const App = () => {
     if(!date) {
       dateValidation = 'No Date, please select a date'
     }
+    if(date){
+      setDateVal('');
+    }
     if(!task) {
       taskValidation = 'No Task, please add task'
+    }
+    if(task){
+      setTaskVal('');
     }
     if(task.length > 250) {
       taskValidation = 'Task is to big'
     }
+    if(task){
+      setTaskVal('');
+    }
     if(!beginTime) {
       bTimeValidation = 'No Begin Time, please add begin time'
+    }
+    if(beginTime) {
+      setBTimeVal('');
     }
     if(!endTime){
       eTimeValidation = "No End Time, please add end time"
     }
+    if(endTime) {
+      setETimeVal('');
+    }
     if(!priority){
       priorityValidation = "No Priority, please add priority"
+    }
+    if(priority) {
+      setPriorityVal('');
     }
     if(dateValidation){
       setDateVal(dateValidation);
