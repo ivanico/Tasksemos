@@ -38,22 +38,22 @@ const App = () => {
     let priorityValidation = '';
 
     if(!date) {
-      dateValidation = 'No Date'
+      dateValidation = 'No Date, please select a date'
     }
     if(!task) {
-      taskValidation = 'No Task'
+      taskValidation = 'No Task, please add task'
     }
     if(task.length > 250) {
       taskValidation = 'Task is to big'
     }
     if(!beginTime) {
-      bTimeValidation = 'No Begin Time'
+      bTimeValidation = 'No Begin Time, please add begin time'
     }
     if(!endTime){
-      eTimeValidation = "No End Time"
+      eTimeValidation = "No End Time, please add end time"
     }
     if(!priority){
-      priorityValidation = "No Priority"
+      priorityValidation = "No Priority, please add priority"
     }
     if(dateValidation){
       setDateVal(dateValidation);
@@ -95,8 +95,7 @@ const App = () => {
     setBTimeVal('');
     setETimeVal('');
     setPriorityVal('');
-    }
-    
+    }  
   };
     return(
       <div id="main">
@@ -124,42 +123,42 @@ const App = () => {
         {!visible && <button id="btnNew" onClick={()=> setVisible(true)}>Add New</button>}
         {visible &&
         <React.Fragment>
-          <span>{dateValidation}</span>
+          <span id="err-massage">{dateValidation}</span>
           <InputField 
           handleChange={setDate}
           value={date}
           type="date"
           />
-          <span>{taskValidation}</span>
+          <span id="err-massage">{taskValidation}</span>
           <InputField 
           handleChange={setTask}
           value={task}
           type="text"
           placeholder="Task"
           />
-          <span>{bTimeValidation}</span>
+          <span id="err-massage">{bTimeValidation}</span>
           <InputField 
           handleChange={setBeginTime}
           value={beginTime}
           type="text"
           placeholder="Begin time"
           />
-          <span>{eTimeValidation}</span>
+          <span id="err-massage">{eTimeValidation}</span>
           <InputField 
           handleChange={setEndTime}
           value={endTime}
           type="text"
           placeholder="End time"
           />
-          <span>{priorityValidation}</span>
+          <span id="err-massage">{priorityValidation}</span>
           <InputField 
           handleChange={setPriority}
           value={priority}
           type="number"
           placeholder="Priority"
           />
-          <button onClick={()=> addNewTask()}>Add</button>
-          <button onClick={()=> setVisible(false)}>Cancel</button>
+          <button id="btnAdd" onClick={()=> addNewTask()}>Add</button>
+          <button id="btnCancel" onClick={()=> setVisible(false)}>Cancel</button>
         </React.Fragment>
         }</div>
       </div>
