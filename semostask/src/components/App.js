@@ -108,11 +108,6 @@ const App = () => {
     setBeginTime('');
     setEndTime('');
     setPriority('');
-    setDateVal('');
-    setTaskVal('');
-    setBTimeVal('');
-    setETimeVal('');
-    setPriorityVal('');
     }  
   };
     return(
